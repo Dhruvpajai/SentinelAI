@@ -41,6 +41,8 @@ class RuleMatch:
     rule_id: str
     rule_name: str
     description: str
+    category: str
+    severity: Severity
 
 
 @dataclass(frozen=True)
