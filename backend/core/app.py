@@ -11,6 +11,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from backend.api.dependencies import build_prompt_analyzer
 from backend.api.router import api_router
 from backend.core.config import Settings, get_settings
 from backend.core.logging import setup_logging
@@ -33,6 +34,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
+        app.state.prompt_analyzer = build_prompt_analyzer()
         logger.info("%s started (env=%s)", settings.app_name, settings.app_env)
         yield
         logger.info("%s shutting down", settings.app_name)

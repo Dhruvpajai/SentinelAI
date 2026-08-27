@@ -5,7 +5,7 @@ Provides the prompt analysis engine foundation for detecting malicious
 input before it reaches an LLM.
 """
 
-from backend.firewall.analyzer import PromptAnalyzer
+from backend.firewall.analyzer import DecisionPolicy, PromptAnalyzer
 from backend.firewall.interfaces import (
     IPromptAnalyzer,
     IPromptNormalizer,
@@ -25,6 +25,7 @@ from backend.firewall.threat_scorer import ThreatScorer
 
 __all__ = [
     "Decision",
+    "DecisionPolicy",
     "IPromptAnalyzer",
     "IPromptNormalizer",
     "IRuleEngine",
